@@ -1,7 +1,7 @@
 name: Deploy Shipay ApiRest
 
 on: push
-branches: [ develop ]
+
 
 jobs:
   build_deploy:
