@@ -24,7 +24,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true 
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ github.repository }}:v${{ github.sha }}
-
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ github.repository }}:${{ github.ref }}
+        
       - name: Image Digest 
         run: echo ${{ steps.docker_build.outputs.digest }}
