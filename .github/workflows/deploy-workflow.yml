@@ -4,7 +4,8 @@ on: push
 
 
 jobs:
-  build_deploy:
+
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,7 +26,17 @@ jobs:
           file: ./Dockerfile
           push: true 
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.PROJECT }}:latest
-        
-      
+              
       - name: Image Digest 
         run: echo ${{ steps.docker_build.outputs.digest }}
+
+  deploy:
+    runs-on: seth
+
+    steps:
+      - name: Start Minikube Local
+        id: minikube_local
+        uses: hiberbee/github-action-minikube@master
+
+      - name: Get Minikube IP
+        run: echo ${{ steps.minikube_local.outputs.ip }} 
