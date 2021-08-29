@@ -31,7 +31,7 @@ jobs:
         run: echo ${{ steps.docker_build.outputs.digest }}
 
   deploy:
-    runs-on: [ self-hosted, Linux, X64, seth ]
+    runs-on: self-hosted 
 
     steps:
       - name: Start Minikube Local
