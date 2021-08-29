@@ -35,9 +35,26 @@ jobs:
     needs: build 
 
     steps:
+
       - name: Start Minikube Local
         id: minikube_local
         uses: hiberbee/github-action-minikube@latest
+        with:
+          profile: github
+      
+      - name: Get minikube status
+        run: minikube status
+
+      - name: Get cluster info
+        run: kubectl cluster-info
+
+      - name: Get Kubernetes Pods 
+        run: kubectl get pods --all-namespace
 
       - name: Get Minikube IP
         run: echo ${{ steps.minikube_local.outputs.ip }} 
+      
+      - name: Get Helm Releases
+        uses: hiberbee/github-action-helm@latest
+        with:
+          helm-command: list 
