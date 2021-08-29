@@ -31,12 +31,13 @@ jobs:
         run: echo ${{ steps.docker_build.outputs.digest }}
 
   deploy:
-    runs-on: self-hosted 
+    runs-on: self-hosted
+    needs: build 
 
     steps:
       - name: Start Minikube Local
         id: minikube_local
-        uses: hiberbee/github-action-minikube@master
+        uses: hiberbee/github-action-minikube@latest
 
       - name: Get Minikube IP
         run: echo ${{ steps.minikube_local.outputs.ip }} 
