@@ -43,7 +43,7 @@ jobs:
         run: kubectl cluster-info
 
       - name: Get Kubernetes Pods 
-        run: kubectl get pods --all-namespace
+        run: kubectl get pods --all-namespaces
 
       - name: Get Minikube IP
         run: minikube ip
