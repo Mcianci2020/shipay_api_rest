@@ -5,7 +5,7 @@ metadata:
   name: {{ .Values.appName }}
   labels:
     chart: {{ .Chart.Name }}
-    release: {{ .Release.Name }}
+    release: {{ .Chart.Name }}
 {{- if hasKey .Values.ingress "annotations" -}}
   {{ if .Values.ingress.annotations.enabled }}
   annotations:
