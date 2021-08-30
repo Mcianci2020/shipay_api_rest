@@ -1,0 +1,4 @@
+apiVersion: v2
+name: apiRest-helm-chart
+description: A Helm chart for ApiRest
+version: v0.0.1
