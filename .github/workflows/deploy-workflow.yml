@@ -45,7 +45,7 @@ jobs:
       
       - name: Deploy Minikube
         env: 
-          DEPLOY_NAME: apiRest-develop
+          DEPLOY_NAME: apiRestDev
           DEPLOY_NAMESPACE: develop
           HELM_PACKAGE: apiRest-helm-chart-v0.0.1.tgz
           CONFIG_FILE: environments/develop/values.yaml
