@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout Repo
         uses: actions/checkout@v2
 
@@ -35,17 +36,23 @@ jobs:
     needs: build 
 
     steps:
-      
-      - name: Get minikube status
+
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Check minikube status
         run: minikube status
+      
+      - name: Deploy Minikube
+        env: 
+          DEPLOY_NAME: apiRest
+          HELM_PACKAGE: apiRest-v0.0.1.tgz
+          CONFIG_FILE: environments/develop/values.yml
+        run: |
+          helm dependency update 
+          helm package "base_helm_chart/ApiRest"          
+          helm upgrade --install ${DEPLOY_NAME} ${HELM_PACKAGE} -f ${CONFIG_FILE}
+          
 
-      - name: Get cluster info
-        run: kubectl cluster-info
-
-      - name: Get Kubernetes Pods 
-        run: kubectl get pods --all-namespaces
-
-      - name: Get Minikube IP
-        run: minikube ip
       
      
