@@ -29,7 +29,7 @@ ingress:
 
 # metrics-server add-on required
 hpa:
-  enabled: true
+  enabled: false
   maxReplicas: 2
   # average total CPU usage per pod (1-100)
   cpu: 70
