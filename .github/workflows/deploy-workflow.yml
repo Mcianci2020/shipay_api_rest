@@ -46,13 +46,12 @@ jobs:
       - name: Deploy Minikube
         env: 
           DEPLOY_NAME: apiRest
-          HELM_PACKAGE: apiRest-v0.0.1.tgz
+          HELM_PACKAGE: apiRest-helm-chart-v0.0.1.tgz
           CONFIG_FILE: environments/develop/values.yaml
         run: |
           #helm dependency update 
           helm package ".github/base_helm_chart"
-          ls -all
-          helm lint          
+          ls -all          
           echo "helm upgrade --install $DEPLOY_NAME $HELM_PACKAGE -f $CONFIG_FILE"
 
           
