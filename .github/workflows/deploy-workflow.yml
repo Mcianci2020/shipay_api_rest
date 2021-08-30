@@ -49,9 +49,8 @@ jobs:
           HELM_PACKAGE: apiRest-helm-chart-v0.0.1.tgz
           CONFIG_FILE: environments/develop/values.yaml
         run: |
-          helm package ".github/base_helm_chart"
-          helm repo update       
-          helm upgrade --install apiRestDev $HELM_PACKAGE --namespace $DEPLOY_NAMESPACE -f $CONFIG_FILE
+          helm package ".github/base_helm_chart"       
+          helm upgrade --install apiRestDev $HELM_PACKAGE -n $DEPLOY_NAMESPACE -f $CONFIG_FILE
 
           
      
