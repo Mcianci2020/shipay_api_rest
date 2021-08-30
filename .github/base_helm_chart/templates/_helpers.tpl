@@ -20,6 +20,6 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 Create a default release name truncated at 63 chars.
 */}}
 {{- define "releasename" -}}
-{{- printf "%s" .Chart.Name | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s" .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
-
+~                 

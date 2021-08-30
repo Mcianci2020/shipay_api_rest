@@ -1,4 +1,4 @@
-apiVersion: v2
-name: apiRest
-description: A Helm chart for ApiRest
+apiVersion: v1
+description: A Helm chart for Cronjob
+name: base-helm-chart
 version: v0.0.1
