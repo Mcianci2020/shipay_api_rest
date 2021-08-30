@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
-appName: apiRest-develop
+appName: apiRestDev
 
 image:
   pullPolicy: IfNotPresent
