@@ -31,7 +31,7 @@ jobs:
       - name: Image Digest 
         run: echo ${{ steps.docker_build.outputs.digest }}
 
-  deploy:
+  develop:
     runs-on: self-hosted
     needs: build 
 
@@ -50,9 +50,9 @@ jobs:
           CONFIG_FILE: environments/develop/values.yml
         run: |
           helm dependency update 
-          helm package "base_helm_chart/ApiRest"          
+          helm package "base_helm_chart/ApiRest"
+          ls -all
+          helm lint          
           echo "helm upgrade --install ${DEPLOY_NAME} ${HELM_PACKAGE} -f ${CONFIG_FILE}"
           
-
-      
      
