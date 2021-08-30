@@ -49,8 +49,4 @@ hpa:
 
 # You also can use helm ssm plugin to inject environments(https://github.com/codacy/helm-ssm/)
 environments:
-  - name: DEBUG
-    value: 'False'
-  - name: ALLOWED_HOSTS
-    value: '*'
 
