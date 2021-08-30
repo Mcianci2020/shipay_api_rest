@@ -1,52 +1,30 @@
 # Default value.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-
 replicaCount: 1
-appName: appname
 
+appName: your_app_name
 
 image:
   pullSecret: aws-registry-credentials
   pullPolicy: IfNotPresent
   tag: e84f7fc0
   repository: repository-domain/image-name
-  command: 
+  command:
 
-service:
-  type: ClusterIP
-  externalPort: 8000
-  internalPort: 8000
-
-resources:
-  limits:
-    cpu: 100m
-    memory: 128Mi
-  requests:
-    cpu: 100m
-    memory: 128Mi
-
-ingress:
-  enabled: true
-  domain: "example.com.br"
-  annotations:
-    # Documentation about nginx ingress annotations:
-    # https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/
-    enabled: false
-    values:
-      nginx.ingress.kubernetes.io/proxy-body-size: "1m"
-
-# metrics-server add-on required
-hpa:
+# cronjob Kubernetes
+cronjob:
   enabled: false
-  maxReplicas: 10
-  # average total CPU usage per pod (1-100)
-  cpu:
-  # average memory usage per pod (100Mi-1Gi)
-  memory:
-  # average http requests per second per pod (k8s-prometheus-adapter)
-  requests:
+  schedule: '0/1 * * *'
+  command: ['/bin/bash', '-c']
+  args:
+    - echo "Start Command"
+    - sleep 10
+    - echo "Complete Command"
 
 # You also can use helm ssm plugin to inject environments(https://github.com/codacy/helm-ssm/)
 environments:
-
+  - name: DEBUG
+    value: 'False'
+  - name: ALLOWED_HOSTS
+    value: '*'

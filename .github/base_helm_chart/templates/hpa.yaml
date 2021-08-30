@@ -1,4 +1,3 @@
-
 {{- if .Values.hpa.enabled -}}
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
@@ -31,3 +30,4 @@ spec:
         targetAverageValue: {{ .Values.hpa.requests }}
   {{- end }}
 {{- end }}
+~                                                       
