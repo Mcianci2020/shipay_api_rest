@@ -50,7 +50,7 @@ jobs:
           CONFIG_FILE: environments/develop/values.yaml
         run: |
           #helm dependency update 
-          helm package "./base_helm_chart/ApiRest"
+          helm package ".github/base_helm_chart"
           ls -all
           helm lint          
           echo "helm upgrade --install $DEPLOY_NAME $HELM_PACKAGE -f $CONFIG_FILE"
