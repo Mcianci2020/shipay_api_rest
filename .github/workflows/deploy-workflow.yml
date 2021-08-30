@@ -51,7 +51,7 @@ jobs:
         run: |
           helm dependency update 
           helm package "base_helm_chart/ApiRest"          
-          helm upgrade --install ${DEPLOY_NAME} ${HELM_PACKAGE} -f ${CONFIG_FILE}
+          echo "helm upgrade --install ${DEPLOY_NAME} ${HELM_PACKAGE} -f ${CONFIG_FILE}"
           
 
       
