@@ -49,8 +49,8 @@ jobs:
           HELM_PACKAGE: apiRest-v0.0.1.tgz
           CONFIG_FILE: environments/develop/values.yaml
         run: |
-          helm package ".github/apiRest"       
-          helm upgrade --install apiRest $HELM_PACKAGE -n $DEPLOY_NAMESPACE -f $CONFIG_FILE
+          helm package ".github/apirest"       
+          helm upgrade --install apirest $HELM_PACKAGE -n $DEPLOY_NAMESPACE -f $CONFIG_FILE
 
           
      

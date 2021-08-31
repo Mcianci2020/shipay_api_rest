@@ -1,4 +1,4 @@
 apiVersion: v1
 description: A Helm chart for apiRest
-name: apiRest
+name: apirest
 version: v0.0.1
