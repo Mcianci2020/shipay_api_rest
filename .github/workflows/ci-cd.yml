@@ -9,6 +9,8 @@ jobs:
 
   CI:
     runs-on: ubuntu-latest
+    env: 
+      ANCHORE: true
 
     steps:
 
@@ -33,6 +35,25 @@ jobs:
       - name: Image Digest 
         run: echo ${{ steps.docker_build.outputs.digest }}
 
+      - name: Scan Anchore Image
+        id: scan
+        uses: anchore/scan-action@v2
+        if: env.ANCHORE == 'true'
+        with:
+          image: ${{ steps.docker_build.outputs.image_id }}:${{ steps.docker_build.outputs.tag }}
+          fail-build: false
+          acs-report-enable: true
+          debug: true
+
+      - name: Upload Anchore reports
+        if: env.ANCHORE == 'true'
+        uses: actions/upload-artifact@v2
+        with:
+          name: anchore-reports
+          path: |
+            ${{ steps.scan.outputs.sarif }}
+            ${{ steps.scan.outputs.vulnerabilities }}
+  
   DEV:
     runs-on: self-hosted
     needs: CI 
