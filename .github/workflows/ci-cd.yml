@@ -11,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     env: 
       ANCHORE: true
+    outputs:
+      image_id: ${{ steps.docker_build.outputs.image_id }}
+      tag: ${{ steps.docker_build.outputs.tag }}
+
 
     steps:
 
