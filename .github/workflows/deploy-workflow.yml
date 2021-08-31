@@ -75,7 +75,7 @@ jobs:
           echo ""       
           helm upgrade --install apirest $HELM_PACKAGE -n $DEPLOY_NAMESPACE -f $CONFIG_FILE
         
-UAT:
+  UAT:
     runs-on: self-hosted
     needs: develop
 
