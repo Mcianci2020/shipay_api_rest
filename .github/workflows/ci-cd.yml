@@ -11,11 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env: 
       ANCHORE: true
-    outputs:
-      image_id: ${{ steps.docker_build.outputs.image_id }}
-      tag: ${{ steps.docker_build.outputs.tag }}
-
-
+    
     steps:
 
       - name: Checkout Repo
@@ -45,7 +41,7 @@ jobs:
         if: env.ANCHORE == 'true'
         with:
           dockerfile-path: "./Dockerfile"
-          image: ${{ steps.docker_build.outputs.image_id }}:${{ steps.docker_build.outputs.tag }}
+          image: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.PROJECT }}:latest
           fail-build: false
           acs-report-enable: true
           debug: true
