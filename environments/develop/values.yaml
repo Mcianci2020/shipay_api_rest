@@ -10,6 +10,9 @@ image:
   tag: latest
   repository: marcoscianci/shipay-api-rest
 
+imagePullSecrets:
+  - name: 
+
 resources:
   limits:
     cpu: 200m
