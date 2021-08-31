@@ -40,7 +40,6 @@ jobs:
         uses: anchore/scan-action@v2
         if: env.ANCHORE == 'true'
         with:
-          dockerfile-path: "./Dockerfile"
           image: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.PROJECT }}:latest
           fail-build: false
           acs-report-enable: true
