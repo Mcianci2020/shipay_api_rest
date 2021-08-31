@@ -44,6 +44,7 @@ jobs:
         uses: anchore/scan-action@v2
         if: env.ANCHORE == 'true'
         with:
+          dockerfile-path: "./Dockerfile"
           image: ${{ steps.docker_build.outputs.image_id }}:${{ steps.docker_build.outputs.tag }}
           fail-build: false
           acs-report-enable: true
@@ -54,9 +55,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: anchore-reports
-          path: |
-            ${{ steps.scan.outputs.sarif }}
-            ${{ steps.scan.outputs.vulnerabilities }}
+          path: ./anchore-reports/
   
   DEV:
     runs-on: self-hosted
