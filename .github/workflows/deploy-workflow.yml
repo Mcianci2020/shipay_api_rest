@@ -53,5 +53,26 @@ jobs:
           echo ""       
           helm upgrade --install apirest $HELM_PACKAGE -n $DEPLOY_NAMESPACE -f $CONFIG_FILE
 
-          
+  QAS:
+    runs-on: self-hosted
+    needs: develop
+
+    steps:
+
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Check minikube status
+        run: minikube status
+      
+      - name: Deploy Minikube
+        env: 
+          DEPLOY_NAMESPACE: qas
+          HELM_PACKAGE: apirest-v0.0.1.tgz
+          CONFIG_FILE: environments/qas/values.yaml
+        run: |
+          helm package ".github/apirest"
+          echo ""       
+          helm upgrade --install apirest $HELM_PACKAGE -n $DEPLOY_NAMESPACE -f $CONFIG_FILE
+        
      
