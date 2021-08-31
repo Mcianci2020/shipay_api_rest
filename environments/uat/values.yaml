@@ -1,0 +1,37 @@
+# Default value.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+appName: apirest
+
+image:
+  pullPolicy: IfNotPresent
+  tag: latest
+  repository: marcoscianci/shipay-api-rest
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 250Mi
+  requests:
+    cpu: 200m
+    memory: 250Mi
+
+service:
+  type: ClusterIP
+  externalPort: 3000
+  internalPort: 3000
+
+ingress:
+  enabled: true
+  domain: "apirest-uat.shipay.test.org"
+
+hpa:
+  enabled: false
+  maxReplicas: 2
+  cpu: 70
+  memory:
+  requests:
+
+environments:

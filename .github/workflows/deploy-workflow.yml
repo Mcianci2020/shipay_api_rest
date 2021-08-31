@@ -5,7 +5,7 @@ on: push
 
 jobs:
 
-  build:
+  CI:
     runs-on: ubuntu-latest
 
     steps:
@@ -31,9 +31,9 @@ jobs:
       - name: Image Digest 
         run: echo ${{ steps.docker_build.outputs.digest }}
 
-  develop:
+  DEV:
     runs-on: self-hosted
-    needs: build 
+    needs: CI 
 
     steps:
 
@@ -55,7 +55,7 @@ jobs:
 
   QAS:
     runs-on: self-hosted
-    needs: develop
+    needs: DEV
 
     steps:
 
@@ -77,7 +77,7 @@ jobs:
         
   UAT:
     runs-on: self-hosted
-    needs: develop
+    needs: QAS
 
     steps:
 
@@ -96,4 +96,25 @@ jobs:
           helm package ".github/apirest"
           echo ""       
           helm upgrade --install apirest $HELM_PACKAGE -n $DEPLOY_NAMESPACE -f $CONFIG_FILE
-     
+
+  PROD:
+    runs-on: self-hosted
+    needs: UAT
+
+    steps:
+
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Check minikube status
+        run: minikube status
+      
+      - name: Deploy Minikube
+        env: 
+          DEPLOY_NAMESPACE: uat
+          HELM_PACKAGE: apirest-v0.0.1.tgz
+          CONFIG_FILE: environments/uat/values.yaml
+        run: |
+          helm package ".github/apirest"
+          echo ""       
+          helm upgrade --install apirest $HELM_PACKAGE -n $DEPLOY_NAMESPACE -f $CONFIG_FILE   
