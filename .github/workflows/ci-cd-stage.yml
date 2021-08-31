@@ -47,9 +47,9 @@ jobs:
       
       - name: Deploy Minikube
         env: 
-          DEPLOY_NAMESPACE: develop
+          DEPLOY_NAMESPACE: htx
           HELM_PACKAGE: apirest-v0.0.1.tgz
-          CONFIG_FILE: environments/develop/values.yaml
+          CONFIG_FILE: environments/htx/values.yaml
         run: |
           helm package ".github/apirest"
           echo ""       
@@ -69,9 +69,9 @@ jobs:
       
       - name: Deploy Minikube
         env: 
-          DEPLOY_NAMESPACE: uat
+          DEPLOY_NAMESPACE: prod
           HELM_PACKAGE: apirest-v0.0.1.tgz
-          CONFIG_FILE: environments/uat/values.yaml
+          CONFIG_FILE: environments/prod/values.yaml
         run: |
           helm package ".github/apirest"
           echo ""       
