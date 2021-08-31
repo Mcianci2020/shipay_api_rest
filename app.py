@@ -7,7 +7,7 @@ app = FastAPI()
 
 @app.get("/health")
 async def read_root():
-    return {"Hello": "Shipay"}
+    return {"Hello": "Shipay Teste"}
 
 
 @app.get("/items/{item_id}")
