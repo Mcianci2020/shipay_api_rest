@@ -11,7 +11,7 @@ image:
   repository: marcoscianci/shipay-api-rest
 
 imagePullSecrets:
-  - name: 
+  - name: null
 
 resources:
   limits:
